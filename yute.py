@@ -1,3 +1,4 @@
+import csv
 import logging, os, argparse, subprocess
 from logging import handlers
 
@@ -48,7 +49,17 @@ def yexit(why=''):
 
 def main():
 	print("Go Fuck Yourself.")
-	#todo
+	sub_urls = []
+	with open(_sublist, 'r') as csvfile:
+		reader = csv.reader(csvfile, delimiter=',')
+		for row in reader:
+			logger.debug('%s' % row[0])
+			sub_urls.append(row[0])
+
+	dir_opt = '-o ' + _outfolder + '/%(title)s.%(ext)s'
+	qual_opt = '-f \'best\''
+	selct_opt = '--date today'
+	
 	yexit()
 
 
